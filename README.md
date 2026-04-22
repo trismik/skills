@@ -29,7 +29,11 @@ Use the built-in [`$skill-installer`](https://developers.openai.com/codex/skills
 $skill-installer install https://github.com/trismik/skills/tree/main/skills/quickcompare-format
 ```
 
-Restart Codex after install.
+Restart Codex after install; then you can just invoke the skill with
+
+```
+$quickcompare-format
+```
 
 ### Manual (any tool)
 
