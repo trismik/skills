@@ -15,7 +15,28 @@ Help the user shape a dataset they can upload to **Trismik QuickCompare** (one r
 1. **Understand the task.** Ask what they're evaluating, whether they have reference answers, and what format their raw data is in. Nothing more.
 2. **Decide columns and names.** See `references/column-design.md`. Default to keeping the user's existing names — only rename if missing, non-descriptive, reserved (`response`, `row`), or containing spaces.
 3. **Offer annotations if LLM-as-Judge is planned.** Extra columns become `{{ row.<name> }}` in the UI's judge template (you don't write the template). See `references/llmaj-annotations.md`. Don't run a checklist — ask an open-ended question or two about how they'll judge responses and suggest columns that fit the answer.
-4. **Convert and validate.** See `references/format-spec.md`. Output in CSV or JSONL, UTF-8, consistent columns per row, ≤50k rows / ~50 MB. Show a 3-row preview and the final row count.
+4. **Convert and validate.** See `references/format-spec.md`. Output in CSV or JSONL, UTF-8, consistent columns per row, ≤50k rows / ~50 MB. Show a 3-row preview and the final row count. If the user doesn't have a preference, you should prefer JSONL.
+
+## Format
+
+### JSONL
+
+Output flat JSONL without nested fields. Use consistent field names on every line.
+
+```json lines
+{"a": 1, "b": 2.0, "c": "foo", "d": false}
+{"a": 4, "b": -5.5, "c": null, "d": true}
+```
+
+### CSV
+
+Keep CSV simple so it loads cleanly via Hugging Face `datasets`:
+
+```python
+dataset = load_dataset("csv", data_files="my_file.csv")
+```
+
+Single header row, comma-separated, UTF-8, `"` quoting for fields containing commas/quotes/newlines, `\n` line endings. No multi-row headers, no merged cells, no trailing metadata rows.
 
 ## Quick column picker
 
