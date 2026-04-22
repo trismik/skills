@@ -1,6 +1,6 @@
 {
   "name": "quickcompare-format",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Prepare a CSV or JSONL dataset for upload to Trismik QuickCompare. Advises on columns, names, and LLM-as-Judge annotation columns.",
   "author": {
     "name": "Trismik",
