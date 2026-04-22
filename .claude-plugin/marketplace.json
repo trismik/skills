@@ -1,0 +1,21 @@
+{
+  "name": "trismik-skills",
+  "owner": {
+    "name": "Trismik"
+  },
+  "metadata": {
+    "description": "Claude Code skills for working with Trismik.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "quickcompare-format",
+      "source": "./skills/quickcompare-format",
+      "description": "Prepare a CSV or JSONL dataset for upload to Trismik QuickCompare. Advises on columns, names, and LLM-as-Judge annotation columns.",
+      "version": "0.1.0",
+      "category": "data",
+      "tags": ["trismik", "evaluation", "dataset", "quickcompare"],
+      "license": "MIT"
+    }
+  ]
+}
